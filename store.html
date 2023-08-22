@@ -1,77 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kev Online Shop</title>
+    <!-- ... existing meta tags ... -->
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
-            margin: 0;
-            padding: 0;
-        }
-        .header {
-            background-color: orange;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .product-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 20px;
-        }
-
-        .product {
-            flex: 1;
-            max-width: 300px;
-            background-color: white;
-            margin: 10px;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-        }
-
-        .product:hover {
-            transform: translateY(-5px);
-        }
-
-        .product img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        .product h2 {
-            font-size: 1.2rem;
-            margin-top: 0;
-        }
-
-        .product p {
-            margin: 10px 0;
-        }
-
-        .product button {
-            display: block;
-            width: 100%;
-            background-color: orange;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+        <!-- ... existing CSS styles ... -->
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>Welcome to Kev Online Shop</h1>
-        <p>Your destination for delicious instant noodles!</p>
+        <!-- ... existing header content ... -->
     </div>
 
     <div class="product-container">
@@ -79,22 +16,50 @@
             <h2>Spicy Ramen</h2>
             <img src="https://image.made-in-china.com/202f0j00mjEVCYilAekP/Hot-Roasted-Chicken-Flavor-Spicy-Cheese-Flavour-Korean-Fire-Stir-Fried-Instant-Ramen-Noodles.webp" alt="Spicy Ramen" width="200" height="150">
             <p>Delicious and spicy instant ramen noodles.</p>
-            <p>Price: $2.99</p>
-            <p>Samyang are best-known for creating Korea's first ramen in 1961. The chewy ramen noodles are flavoured with green tea oil, and come with a spicy, chicken-flavoured soup. The fire noodles get their name - and strong spicy heat - from the chilli pepper powder, red pepper powder and paprika extract in the soup.</p>
-            <button>Add to Cart</button>
+            <p class="product-price">Price: $2.99</p>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1">
+            <button class="add-to-cart">Add to Cart</button>
         </div>
 
         <div class="product">
             <h2>Spicy Carbonara Ramen</h2>
             <img src="https://tanbrother.zildia.com/web/image/product.template/708/image" alt="Spicy Carbonara Ramen" width="200" height="150">
             <p>Rich and creamy carbonara-flavored instant noodles with a spicy kick.</p>
-            <p>Price: $3.49</p>
-            <p>A well-balanced creamy carbonara flavour based on of Italian hot pasta called Carbonara. The creamy flavour helps to settle the extreme heat of the original hot noodle, but it is still hot. Smooth and cream yet hot and spicy.</p>            
-            <button>Add to Cart</button>
+            <p class="product-price">Price: $3.49</p>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1">
+            <button class="add-to-cart">Add to Cart</button>
         </div>
     </div>
 
-    <!-- Add more product sections here -->
+    <div class="cart">
+        <h3>Your Cart</h3>
+    </div>
 
+    <script>
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', addToCart);
+        });
+
+        function addToCart(event) {
+            const productContainer = event.target.closest('.product');
+            const productName = productContainer.querySelector('h2').textContent;
+            const productPrice = parseFloat(productContainer.querySelector('.product-price').textContent.substring(8));
+            const quantity = parseInt(productContainer.querySelector('#quantity').value);
+
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = `
+                <p><strong>${productName}</strong> - Quantity: ${quantity}</p>
+                <p>Price: $${(productPrice * quantity).toFixed(2)}</p>
+            `;
+
+            const cart = document.querySelector('.cart');
+            cart.appendChild(cartItem);
+        }
+    </script>
 </body>
 </html>
