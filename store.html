@@ -73,7 +73,12 @@
         <h1>Welcome to Kev Online Shop</h1>
         <p>Your destination for delicious instant noodles!</p>
     </div>
-
+    <div class="cart-tab">
+        <a href="#cart">
+            <img src="cart-icon.png" alt="Cart">
+            <span>Cart</span>
+        </a>
+    </div>
     <div class="product-container">
         <div class="product">
             <h2>Spicy Ramen</h2>
@@ -96,11 +101,41 @@
         </div>
     </div>
 
-    <div class="cart">
-        <h3>Your Cart</h3>
+    <div class="cart" id="cart">
+        <div class="cart-header">
+            <h2>Your Shopping Cart</h2>
+        </div>
+
+        <div class="cart-items">
+            <!-- Cart items will be dynamically added here using JavaScript -->
+        </div>
+
+        <div class="cart-total">
+            <h3>Total: $<span id="totalAmount">0.00</span></h3>
+            <button id="checkoutButton">Checkout</button>
+        </div>
     </div>
 
+
     <script>
+        const cartTabLink = document.querySelector('.cart-tab a');
+        cartTabLink.addEventListener('click', redirectToCart);
+
+        function redirectToCart(event) {
+            event.preventDefault();
+            const cartItems = document.querySelectorAll('.cart-item');
+            const cartItemData = [];
+
+            cartItems.forEach(item => {
+                const productName = item.querySelector('strong').textContent;
+                const quantity = parseInt(item.textContent.match(/Quantity: (\d+)/)[1]);
+                const price = parseFloat(item.textContent.match(/Price: (\d+\.\d+)/)[1]);
+                cartItemData.push({ productName, quantity, price });
+            });
+
+            localStorage.setItem('cartItems', JSON.stringify(cartItemData));
+            window.location.href = '#cart';
+        }
         const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
         addToCartButtons.forEach(button => {
