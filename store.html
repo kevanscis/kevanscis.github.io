@@ -1,14 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ... existing meta tags ... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kev Online Shop</title>
     <style>
-        <!-- ... existing CSS styles ... -->
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: orange;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .product-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+
+        .product {
+            flex: 1;
+            max-width: 300px;
+            background-color: white;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product h2 {
+            font-size: 1.2rem;
+            margin-top: 0;
+        }
+
+        .product p {
+            margin: 10px 0;
+        }
+
+        .product button {
+            display: block;
+            width: 100%;
+            background-color: orange;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <!-- ... existing header content ... -->
+   <div class="header">
+        <h1>Welcome to Kev Online Shop</h1>
+        <p>Your destination for delicious instant noodles!</p>
     </div>
 
     <div class="product-container">
